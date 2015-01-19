@@ -4,7 +4,7 @@
   <title><![CDATA[Dream Code]]></title>
   <link href="http://chetandhembre.github.io/atom.xml" rel="self"/>
   <link href="http://chetandhembre.github.io/"/>
-  <updated>2015-01-19T22:40:18+05:30</updated>
+  <updated>2015-01-19T23:11:12+05:30</updated>
   <id>http://chetandhembre.github.io/</id>
   <author>
     <name><![CDATA[Chetan Dhembre]]></name>
@@ -14,11 +14,15 @@
 
   
   <entry>
-    <title type="html"><![CDATA[Welcomeclear]]></title>
+    <title type="html"><![CDATA[Welcome to My Blog]]></title>
     <link href="http://chetandhembre.github.io/blog/2015/01/19/welcomeclear/"/>
     <updated>2015-01-19T22:38:39+05:30</updated>
     <id>http://chetandhembre.github.io/blog/2015/01/19/welcomeclear</id>
-    <content type="html"><![CDATA[<h1>Welcome Post</h1>
+    <content type="html"><![CDATA[<p>Hi, I am <strong>chetan</strong>, <em>web developer</em>. I am starting this blog as this new year (2015) resolution.</p>
+
+<p>I would be writing mostly about development, hacking and startup. I will be writing minimum 1 post per 15 days.</p>
+
+<p>Hope you will learn something from this blog.</p>
 ]]></content>
   </entry>
   

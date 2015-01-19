@@ -3,11 +3,10 @@
 # ----------------------- #
 
 url: http://chetandhembre.github.io
-title: My Octopress Blog
-subtitle: A blogging framework for hackers.
-author: Your Name
-simple_search: https://www.google.com/search
-description:
+title: Dream Code
+author: Chetan Dhembre
+simple_search: https://www.google.co.in/?gfe_rd=cr&ei=_zS9VOiaG-LV8gfttIDYCw&gws_rd=ssl#q=chetan+dhembre
+description: 
 
 # Default date format is "ordinal" (resulting in "July 22nd 2007")
 # You can customize the format as defined in
@@ -19,7 +18,7 @@ date_format: "ordinal"
 subscribe_rss: /atom.xml
 subscribe_email:
 # RSS feeds can list your email address if you like
-email:
+email: chetandhembre@gmail.com
 
 # ----------------------- #
 #    Jekyll & Plugins     #
@@ -64,22 +63,22 @@ default_asides: [asides/recent_posts.html, asides/github.html, asides/delicious.
 # ----------------------- #
 
 # Github repositories
-github_user:
+github_user:ichetandhembre
 github_repo_count: 0
 github_show_profile_link: true
 github_skip_forks: true
 
 # Twitter
-twitter_user:
+twitter_user:ichetandhembre
 twitter_tweet_button: true
 
 # Google +1
-google_plus_one: false
+google_plus_one: true
 google_plus_one_size: medium
 
 # Google Plus Profile
 # Hidden: No visible button, just add author information to search results
-googleplus_user:
+googleplus_user:+ChetanDhembre
 googleplus_hidden: false
 
 # Pinboard
@@ -91,11 +90,11 @@ delicious_user:
 delicious_count: 3
 
 # Disqus Comments
-disqus_short_name:
+disqus_short_name:ichetandhembre
 disqus_show_comment_count: false
 
 # Google Analytics
-google_analytics_tracking_id:
+google_analytics_tracking_id:UA-41970388-1
 
 # Facebook Like
-facebook_like: false
+facebook_like: true

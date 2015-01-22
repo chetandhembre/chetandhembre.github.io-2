@@ -4,7 +4,7 @@
   <title><![CDATA[Sam's Answer]]></title>
   <link href="http://chetandhembre.github.io/atom.xml" rel="self"/>
   <link href="http://chetandhembre.github.io/"/>
-  <updated>2015-01-23T00:40:42+05:30</updated>
+  <updated>2015-01-23T00:59:54+05:30</updated>
   <id>http://chetandhembre.github.io/</id>
   <author>
     <name><![CDATA[Chetan Dhembre]]></name>
@@ -15,9 +15,9 @@
   
   <entry>
     <title type="html"><![CDATA[How to Create Dynamic Graph on Server Side?]]></title>
-    <link href="http://chetandhembre.github.io/blog/2015/01/20/how-to-create-dynamic-graph-on-server-side/"/>
-    <updated>2015-01-20T22:35:21+05:30</updated>
-    <id>http://chetandhembre.github.io/blog/2015/01/20/how-to-create-dynamic-graph-on-server-side</id>
+    <link href="http://chetandhembre.github.io/blog/2015/01/23/how-to-create-dynamic-graph-on-server-side/"/>
+    <updated>2015-01-23T22:35:21+05:30</updated>
+    <id>http://chetandhembre.github.io/blog/2015/01/23/how-to-create-dynamic-graph-on-server-side</id>
     <content type="html"><![CDATA[<p>One fine weekend I asked <em>Sam</em> one question &ldquo;How to create dynamic graph on server side?&rdquo;. Question made <em>Sam</em>
 think little but after sometime <em>Sam</em> came back with answer as usual and said &ldquo;why not use <strong>phantom.js</strong> here ?&rdquo;..After
 noticing my confused face <em>Sam</em> started to explain me solution step by step, here is how we solve this problem,</p>

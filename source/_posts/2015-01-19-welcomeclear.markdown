@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "Welcome To My Blog"
+title: "Welcome To Sam's Answer"
 date: 2015-01-19 22:38:39 +0530
 comments: false
 categories:
@@ -8,8 +8,12 @@ categories:
 - start
 ---
 
-Hi, I am **Chetan**, *web developer*. I am starting this blog as this new year (2015) resolution.
+Hi, I am **Chetan**, *web developer*. I am starting this blog as this year (2015) resolution.
 
-I would be writing mostly about development, hacking and startup. I will be writing minimum 1 post / 15 days.
+This is collection of answers I received from ***Sam***. I keep asking questions to Sam and most of time Sam answer them back. 
 
-Hope you will learn and enjoy something from this blog.
+I am enjoying Sam's answer so much, So I thought why not to share it with you all, hope you also enjoyed Sam's answer and learned lots of stuff.
+
+I mostly asked questions about programming, startup and random stuff in this world to Sam.
+
+

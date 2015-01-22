@@ -5,11 +5,12 @@
 <!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
 <head>
   <meta charset="utf-8">
-  <title>Dream Code</title>
+  <title>Sam&#8217;s Answer</title>
   <meta name="author" content="Chetan Dhembre">
 
   
-  <meta name="description" content="Hi, I am Chetan, web developer. I am starting this blog as this new year (2015) resolution. I would be writing mostly about development, hacking and &hellip;">
+  <meta name="description" content="One fine weekend I asked Sam one question &ldquo;How to create dynamic graph on server side?&rdquo;. Question made Sam
+think little but after &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -21,7 +22,7 @@
   <link rel="canonical" href="http://chetandhembre.github.io">
   <link href="/favicon.png" rel="icon">
   <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
-  <link href="/atom.xml" rel="alternate" title="Dream Code" type="application/atom+xml">
+  <link href="/atom.xml" rel="alternate" title="Sam's Answer" type="application/atom+xml">
   <script src="/javascripts/modernizr-2.0.js"></script>
   <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
   <script>!window.jQuery && document.write(unescape('%3Cscript src="./javascripts/libs/jquery.min.js"%3E%3C/script%3E'))</script>
@@ -59,7 +60,7 @@
 </nav>
   <header role="banner"><hgroup>
 	
-  <h1><a href="/">Dream Code</a></h1>
+  <h1><a href="/">Sam&#8217;s Answer</a></h1>
   
 </hgroup>
 
@@ -75,7 +76,280 @@
       
   <header>
     
-      <h1 class="entry-title"><a href="/blog/2015/01/19/welcomeclear/">Welcome to My Blog</a></h1>
+      <h1 class="entry-title"><a href="/blog/2015/01/20/how-to-create-dynamic-graph-on-server-side/">How to Create Dynamic Graph on Server Side?</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2015-01-20T22:35:21+05:30" pubdate data-updated="true"></time>
+        
+           | <a href="/blog/2015/01/20/how-to-create-dynamic-graph-on-server-side/#disqus_thread"
+             data-disqus-identifier="http://chetandhembre.github.io/blog/2015/01/20/how-to-create-dynamic-graph-on-server-side/">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>One fine weekend I asked <em>Sam</em> one question &ldquo;How to create dynamic graph on server side?&rdquo;. Question made <em>Sam</em>
+think little but after sometime <em>Sam</em> came back with answer as usual and said &ldquo;why not use <strong>phantom.js</strong> here ?&rdquo;..After
+noticing my confused face <em>Sam</em> started to explain me solution step by step, here is how we solve this problem,</p>
+
+<p>1.Create simple line chart in browser</p>
+
+<p>Creating line chart was simple task. We selected <a href="https://razorflow.com/features/">razorflow</a> as our charting library
+(you can select library of your choice) and we came up with very simple line chart, below is simple code snippet to do it,</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+</pre></td><td class='code'><pre><code class='html'><span class='line'>//filename : line_graph.html
+</span><span class='line'><span class="nt">&lt;script </span><span class="na">type=</span><span class="s">&quot;text/javascript&quot;</span><span class="nt">&gt;</span>
+</span><span class='line'>  <span class="kd">function</span> <span class="nx">chart1</span><span class="p">(</span><span class="nx">data</span><span class="p">)</span> <span class="p">{</span>
+</span><span class='line'>    <span class="nx">StandaloneDashboard</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">db</span><span class="p">){</span>
+</span><span class='line'>      <span class="kd">var</span> <span class="nx">chart</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">ChartComponent</span><span class="p">(</span><span class="nx">data</span><span class="p">[</span><span class="s1">&#39;caption&#39;</span><span class="p">]);</span>
+</span><span class='line'>      <span class="nx">chart</span><span class="p">.</span><span class="nx">setDimensions</span> <span class="p">(</span><span class="mi">7</span><span class="p">,</span> <span class="mi">7</span><span class="p">);</span>
+</span><span class='line'>      <span class="nx">chart</span><span class="p">.</span><span class="nx">setCaption</span><span class="p">(</span><span class="nx">data</span><span class="p">[</span><span class="s1">&#39;caption&#39;</span><span class="p">]);</span>
+</span><span class='line'>      <span class="nx">chart</span><span class="p">.</span><span class="nx">setLabels</span> <span class="p">(</span><span class="nx">data</span><span class="p">[</span><span class="s1">&#39;labels&#39;</span><span class="p">]);</span>
+</span><span class='line'>      <span class="nx">chart</span><span class="p">.</span><span class="nx">addSeries</span> <span class="p">(</span><span class="nx">data</span><span class="p">[</span><span class="s2">&quot;series&quot;</span><span class="p">][</span><span class="s2">&quot;id&quot;</span><span class="p">],</span> <span class="nx">data</span><span class="p">[</span><span class="s2">&quot;series&quot;</span><span class="p">][</span><span class="s2">&quot;name&quot;</span><span class="p">],</span> <span class="nx">data</span><span class="p">[</span><span class="s2">&quot;series&quot;</span><span class="p">][</span><span class="s2">&quot;seriesData&quot;</span><span class="p">],</span> <span class="p">{</span>
+</span><span class='line'>        <span class="nx">seriesDisplayType</span><span class="o">:</span> <span class="s2">&quot;line&quot;</span>
+</span><span class='line'>      <span class="p">});</span>
+</span><span class='line'>      <span class="nx">chart</span><span class="p">.</span><span class="nx">setYAxis</span><span class="p">(</span><span class="nx">data</span><span class="p">[</span><span class="s2">&quot;yaxis&quot;</span><span class="p">][</span><span class="s2">&quot;label&quot;</span><span class="p">],</span> <span class="p">{</span><span class="nx">numberPrefix</span><span class="o">:</span> <span class="nx">data</span><span class="p">[</span><span class="s2">&quot;yaxis&quot;</span><span class="p">][</span><span class="s2">&quot;numberPrefix&quot;</span><span class="p">],</span> <span class="nx">numberHumanize</span><span class="o">:</span> <span class="kc">true</span><span class="p">});</span>
+</span><span class='line'>      <span class="nx">db</span><span class="p">.</span><span class="nx">addComponent</span> <span class="p">(</span><span class="nx">chart</span><span class="p">);</span>
+</span><span class='line'>    <span class="p">});</span>
+</span><span class='line'>  <span class="p">}</span>
+</span><span class='line'><span class="nt">&lt;/script&gt;</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Here is full version of above code with output <a class="jsbin-embed" href="http://jsbin.com/laxoka/4/embed?html,output">JS Bin</a><script src="http://static.jsbin.com/js/embed.js"></script>.</p>
+
+<p>We are storing data into <code>window.data</code> so that we can give it to <em>razorflow</em> to render graph. And we done rendering line chart in browser. Most of above code is chart library related.</p>
+
+<p>2.Render Graph using <em>PhantomJS</em> on server side and create PNG image</p>
+
+<p>We are using awesome <a href="http://phantomjs.org/">PhantomJS</a> library to get headless browser at server side. You can install <em>PhantomJS</em> on your machine by following instructions <a href="http://phantomjs.org/download.html">here</a>.
+But we are not installing <em>phantomjs</em> manually, we are using awesome <em><a href="https://www.npmjs.com/package/phantomjs">phantomjs</a></em> module from <em><a href="https://npmjs.com">npm</a></em>,
+Here is code snippet which render graph and create PNG of it</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+</pre></td><td class='code'><pre><code class='js'><span class='line'>  <span class="c1">//filename : phantomjs_render.js</span>
+</span><span class='line'>  <span class="kd">var</span> <span class="nx">page</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">&#39;webpage&#39;</span><span class="p">).</span><span class="nx">create</span><span class="p">();</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="nx">page</span><span class="p">.</span><span class="nx">onLoadFinished</span>   <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">status</span><span class="p">)</span> <span class="p">{</span>
+</span><span class='line'>    <span class="k">if</span> <span class="p">(</span><span class="nx">status</span> <span class="o">===</span> <span class="s1">&#39;success&#39;</span><span class="p">)</span> <span class="p">{</span>
+</span><span class='line'>        <span class="nx">setTimeout</span><span class="p">(</span><span class="kd">function</span> <span class="p">()</span> <span class="p">{</span>
+</span><span class='line'>          <span class="nx">page</span><span class="p">.</span><span class="nx">render</span><span class="p">(</span><span class="s1">&#39;./static_graph.png&#39;</span><span class="p">)</span>
+</span><span class='line'>        <span class="p">},</span> <span class="mi">0</span><span class="p">)</span>
+</span><span class='line'>        <span class="nx">phantom</span><span class="p">.</span><span class="nx">exit</span><span class="p">();</span>
+</span><span class='line'>    <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+</span><span class='line'>      <span class="nx">phantom</span><span class="p">.</span><span class="nx">exit</span><span class="p">();</span>
+</span><span class='line'>    <span class="p">}</span>
+</span><span class='line'>  <span class="p">};</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="nx">page</span><span class="p">.</span><span class="nx">open</span><span class="p">(</span><span class="s1">&#39;line_graph.html&#39;</span><span class="p">,</span> <span class="kd">function</span> <span class="p">()</span> <span class="p">{</span>
+</span><span class='line'>  <span class="p">});</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>lets run above code using following command</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='sh'><span class='line'><span class="nv">$ </span>phantomjs ./phantomjs_render.js
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Lets assume that above html code is in <code>line_graph.html</code> file. We are using  <em>phantomJS</em> to open html file (or url) in headless browser
+and on loading finish it will create png and store it in <code>statis_graph.png</code>. We are using <a href="http://phantomjs.org/api/webpage/method/render.html">render</a> api which help
+us to create png.</p>
+
+<p>And remember to exit phantomjs browser using <code>phantom.exit()</code> otherwise your process wont exit.</p>
+
+<p>But remember we want to create dynamic graph images on server side &hellip; so we solve 50% of problem. let solve remaining 50%.</p>
+
+<p>3.Create dynamic graphs</p>
+
+<p>Lets continue with our current example. We are able to generate static graph image.
+To make graph true-ly  dynamic we have to some how send data dynamically to <code>line_graph.html</code>. We did modify our phantomjs_render.js file to accomplish this goal.
+code snippet is below.</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+</pre></td><td class='code'><pre><code class='js'><span class='line'>  <span class="c1">//filename : phantomjs_render.js</span>
+</span><span class='line'>  <span class="kd">var</span> <span class="nx">page</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">&#39;webpage&#39;</span><span class="p">).</span><span class="nx">create</span><span class="p">();</span>
+</span><span class='line'>  <span class="kd">var</span> <span class="nx">system</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">&#39;system&#39;</span><span class="p">);</span>
+</span><span class='line'>  <span class="kd">var</span> <span class="nx">args</span> <span class="o">=</span> <span class="nx">system</span><span class="p">.</span><span class="nx">args</span><span class="p">;</span>
+</span><span class='line'>  <span class="kd">var</span> <span class="nx">data</span> <span class="o">=</span> <span class="nx">JSON</span><span class="p">.</span><span class="nx">parse</span><span class="p">(</span><span class="nx">system</span><span class="p">.</span><span class="nx">args</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
+</span><span class='line'>
+</span><span class='line'>
+</span><span class='line'>  <span class="nx">page</span><span class="p">.</span><span class="nx">onLoadFinished</span>   <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">status</span><span class="p">)</span> <span class="p">{</span>
+</span><span class='line'>    <span class="k">if</span> <span class="p">(</span><span class="nx">status</span> <span class="o">===</span> <span class="s1">&#39;success&#39;</span><span class="p">)</span> <span class="p">{</span>
+</span><span class='line'>      <span class="nx">page</span><span class="p">.</span><span class="nx">evaluate</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">d</span><span class="p">)</span> <span class="p">{</span>
+</span><span class='line'>        <span class="nb">window</span><span class="p">.</span><span class="nx">chart</span><span class="p">(</span><span class="nx">d</span><span class="p">)</span>
+</span><span class='line'>      <span class="p">},</span> <span class="nx">data</span><span class="p">);</span>
+</span><span class='line'>
+</span><span class='line'>      <span class="nx">setTimeout</span><span class="p">(</span><span class="kd">function</span> <span class="p">()</span> <span class="p">{</span>
+</span><span class='line'>        <span class="nx">page</span><span class="p">.</span><span class="nx">render</span><span class="p">(</span><span class="s1">&#39;./static_graph.png&#39;</span><span class="p">)</span>
+</span><span class='line'>      <span class="p">},</span> <span class="mi">0</span><span class="p">)</span>
+</span><span class='line'>      <span class="nx">phantom</span><span class="p">.</span><span class="nx">exit</span><span class="p">();</span>
+</span><span class='line'>    <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+</span><span class='line'>      <span class="nx">phantom</span><span class="p">.</span><span class="nx">exit</span><span class="p">();</span>
+</span><span class='line'>    <span class="p">}</span>
+</span><span class='line'>  <span class="p">};</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="nx">page</span><span class="p">.</span><span class="nx">open</span><span class="p">(</span><span class="s1">&#39;line_graph.html&#39;</span><span class="p">,</span> <span class="kd">function</span> <span class="p">()</span> <span class="p">{});</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>We have to run following command to run above code in terminal</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='sh'><span class='line'><span class="nv">$ </span>phantomjs ./phantomjs_render.js  stringified_data
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Remember we can not have command arguemnt as json so we have to convert json data to string using <code>JSON.stringify</code>.</p>
+
+<p>We are using in build <code>system</code> from phantomjs to get argument list provided to <em>phantomjs</em> command.</p>
+
+<p>Here we are sending our data as second argument to <strong>phantomjs</strong> command which we can get in our javascript code from <code>line_graph.html</code> using <em><a href="http://phantomjs.org/api/system/property/args.html">system.args</a></em> api.</p>
+
+<p>Another interesting api we are using is <em><a href="http://phantomjs.org/api/webpage/method/evaluate.html">page.evaluate</a></em> which help us to run any javascript code in context of webpage in phatomjs
+browser. On <code>onLoadFinished</code> event on page we are calling <code>chart</code> method and pass our dynamic data to webpage which can be use to create line chart.</p>
+
+<p>4.No!! No command line stuff</p>
+
+<p>I exclaimed !! Sam replied calmly with &ldquo;Why not use <code>child_process</code> from node to run above code?&rdquo;, and with that we solve another problem. Here is code how to do it,</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+</pre></td><td class='code'><pre><code class='js'><span class='line'><span class="c1">//filename : phantomjs_test.js</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="kd">var</span> <span class="nx">phantomjs</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">&#39;phantomjs&#39;</span><span class="p">)</span>
+</span><span class='line'>    <span class="p">,</span> <span class="nx">path</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">&#39;path&#39;</span><span class="p">)</span>
+</span><span class='line'>    <span class="p">,</span> <span class="nx">childProcess</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">&#39;child_process&#39;</span><span class="p">)</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="kd">var</span> <span class="nx">binPath</span> <span class="o">=</span> <span class="nx">phantomjs</span><span class="p">.</span><span class="nx">path</span><span class="p">;</span>
+</span><span class='line'>
+</span><span class='line'>
+</span><span class='line'>  <span class="kd">var</span> <span class="nx">createImage</span> <span class="o">=</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">data</span><span class="p">,</span> <span class="nx">url</span> <span class="cm">/*may be file path*/</span><span class="p">)</span> <span class="p">{</span>
+</span><span class='line'>    <span class="kd">var</span> <span class="nx">childArgs</span> <span class="o">=</span> <span class="p">[</span>
+</span><span class='line'>      <span class="nx">path</span><span class="p">.</span><span class="nx">join</span><span class="p">(</span><span class="nx">__dirname</span><span class="p">,</span> <span class="s1">&#39;phantomjs_render.js&#39;</span><span class="p">),</span>
+</span><span class='line'>      <span class="nx">JSON</span><span class="p">.</span><span class="nx">stringify</span><span class="p">(</span><span class="nx">data</span><span class="p">),</span>
+</span><span class='line'>    <span class="p">];</span>
+</span><span class='line'>
+</span><span class='line'>
+</span><span class='line'>    <span class="kd">var</span> <span class="nx">spawn</span> <span class="o">=</span> <span class="nx">childProcess</span><span class="p">.</span><span class="nx">spawn</span>
+</span><span class='line'>    <span class="nx">spawn</span><span class="p">(</span><span class="nx">binPath</span><span class="p">,</span> <span class="nx">childArgs</span><span class="p">)</span>
+</span><span class='line'>  <span class="p">}</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>run above code using following command</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='sh'><span class='line'>node phantomjs_test.js
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>so here we are spawning new child process with  <code>phantomjs_render.js</code> and  stringify data as arguments. We can also pass other parameters
+dynamically. Thats it !! problem has been solved, Isn&rsquo;t it simple ? :)</p>
+
+<p>5.Advance Usage</p>
+
+<p>I asked this question to Sam because i want to send these dynamically generated graph image in email. Email or preciously email client
+has very poor support for SVG and embedded image. So you have to use <code>img</code> tag. Either you can put these dynamically generated
+image to <code>s3</code> or generate dynamically when request come for it. You can find advance code for it <a href="https://github.com/chetandhembre/blog/tree/master/dynamic_graph_image_phantomjs">here</a>.</p>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2015/01/19/welcomeclear/">Welcome to Sam&#8217;s Answer</a></h1>
     
     
       <p class="meta">
@@ -98,11 +372,13 @@
   </header>
 
 
-  <div class="entry-content"><p>Hi, I am <strong>Chetan</strong>, <em>web developer</em>. I am starting this blog as this new year (2015) resolution.</p>
+  <div class="entry-content"><p>Hi, I am <strong>Chetan</strong>, <em>web developer</em>. I am starting this blog as this year (2015) resolution.</p>
 
-<p>I would be writing mostly about development, hacking and startup. I will be writing minimum 1 post / 15 days.</p>
+<p>This is collection of answers I received from <strong><em>Sam</em></strong>. I keep asking questions to Sam and most of time Sam answer them back.</p>
 
-<p>Hope you will learn and enjoy something from this blog.</p>
+<p>I am enjoying Sam&rsquo;s answer so much, So I thought why not to share it with you all, hope you also enjoyed Sam&rsquo;s answer and learned lots of stuff.</p>
+
+<p>I mostly asked questions about programming, startup and random stuff in this world to Sam.</p>
 </div>
   
   
@@ -133,7 +409,7 @@
   
 
 <script type="text/javascript">
-      var disqus_shortname = 'ichetandhembre';
+      var disqus_shortname = 'chetandhembre';
       
         
         var disqus_script = 'count.js';

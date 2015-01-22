@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
 
-  <title><![CDATA[Category: Welcome | Dream Code]]></title>
+  <title><![CDATA[Category: Welcome | Sam's Answer]]></title>
   <link href="http://chetandhembre.github.io/blog/categories/welcome/atom.xml" rel="self"/>
   <link href="http://chetandhembre.github.io/"/>
-  <updated>2015-01-19T23:35:29+05:30</updated>
+  <updated>2015-01-23T00:40:42+05:30</updated>
   <id>http://chetandhembre.github.io/</id>
   <author>
     <name><![CDATA[Chetan Dhembre]]></name>
@@ -14,15 +14,17 @@
 
   
   <entry>
-    <title type="html"><![CDATA[Welcome to My Blog]]></title>
+    <title type="html"><![CDATA[Welcome to Sam's Answer]]></title>
     <link href="http://chetandhembre.github.io/blog/2015/01/19/welcomeclear/"/>
     <updated>2015-01-19T22:38:39+05:30</updated>
     <id>http://chetandhembre.github.io/blog/2015/01/19/welcomeclear</id>
-    <content type="html"><![CDATA[<p>Hi, I am <strong>Chetan</strong>, <em>web developer</em>. I am starting this blog as this new year (2015) resolution.</p>
+    <content type="html"><![CDATA[<p>Hi, I am <strong>Chetan</strong>, <em>web developer</em>. I am starting this blog as this year (2015) resolution.</p>
 
-<p>I would be writing mostly about development, hacking and startup. I will be writing minimum 1 post / 15 days.</p>
+<p>This is collection of answers I received from <strong><em>Sam</em></strong>. I keep asking questions to Sam and most of time Sam answer them back.</p>
 
-<p>Hope you will learn and enjoy something from this blog.</p>
+<p>I am enjoying Sam&rsquo;s answer so much, So I thought why not to share it with you all, hope you also enjoyed Sam&rsquo;s answer and learned lots of stuff.</p>
+
+<p>I mostly asked questions about programming, startup and random stuff in this world to Sam.</p>
 ]]></content>
   </entry>
   

@@ -1,0 +1,179 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: Svg | Sam's Answer]]></title>
+  <link href="http://chetandhembre.github.io/blog/categories/svg/atom.xml" rel="self"/>
+  <link href="http://chetandhembre.github.io/"/>
+  <updated>2015-01-23T00:40:42+05:30</updated>
+  <id>http://chetandhembre.github.io/</id>
+  <author>
+    <name><![CDATA[Chetan Dhembre]]></name>
+    <email><![CDATA[chetandhembre@gmail.com]]></email>
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[How to Create Dynamic Graph on Server Side?]]></title>
+    <link href="http://chetandhembre.github.io/blog/2015/01/20/how-to-create-dynamic-graph-on-server-side/"/>
+    <updated>2015-01-20T22:35:21+05:30</updated>
+    <id>http://chetandhembre.github.io/blog/2015/01/20/how-to-create-dynamic-graph-on-server-side</id>
+    <content type="html"><![CDATA[<p>One fine weekend I asked <em>Sam</em> one question &ldquo;How to create dynamic graph on server side?&rdquo;. Question made <em>Sam</em>
+think little but after sometime <em>Sam</em> came back with answer as usual and said &ldquo;why not use <strong>phantom.js</strong> here ?&rdquo;..After
+noticing my confused face <em>Sam</em> started to explain me solution step by step, here is how we solve this problem,</p>
+
+<p>1.Create simple line chart in browser</p>
+
+<p>Creating line chart was simple task. We selected <a href="https://razorflow.com/features/">razorflow</a> as our charting library
+(you can select library of your choice) and we came up with very simple line chart, below is simple code snippet to do it,</p>
+
+<p>&#8220;`html</p>
+
+<p>//filename : line_graph.html</p>
+
+<script type="text/javascript">
+  function chart1(data) {
+    StandaloneDashboard(function(db){
+      var chart = new ChartComponent(data['caption']);
+      chart.setDimensions (7, 7);
+      chart.setCaption(data['caption']);
+      chart.setLabels (data['labels']);
+      chart.addSeries (data["series"]["id"], data["series"]["name"], data["series"]["seriesData"], {
+        seriesDisplayType: "line"
+      });
+      chart.setYAxis(data["yaxis"]["label"], {numberPrefix: data["yaxis"]["numberPrefix"], numberHumanize: true});
+      db.addComponent (chart);
+    });
+  }
+</script>
+
+
+<pre><code>
+Here is full version of above code with output &lt;a class="jsbin-embed" href="http://jsbin.com/laxoka/4/embed?html,output"&gt;JS Bin&lt;/a&gt;&lt;script src="http://static.jsbin.com/js/embed.js"&gt;&lt;/script&gt;.
+
+We are storing data into ```window.data``` so that we can give it to *razorflow* to render graph. And we done rendering line chart in browser. Most of above code is chart library related.
+
+2.Render Graph using *PhantomJS* on server side and create PNG image
+
+We are using awesome [PhantomJS](http://phantomjs.org/) library to get headless browser at server side. You can install *PhantomJS* on your machine by following instructions [here](http://phantomjs.org/download.html).
+But we are not installing *phantomjs* manually, we are using awesome *[phantomjs](https://www.npmjs.com/package/phantomjs)* module from *[npm](https://npmjs.com)*,
+Here is code snippet which render graph and create PNG of it
+</code></pre>
+
+<p>  //filename : phantomjs_render.js
+  var page = require(&lsquo;webpage&rsquo;).create();</p>
+
+<p>  page.onLoadFinished   = function(status) {
+    if (status === &lsquo;success&rsquo;) {
+        setTimeout(function () {
+          page.render(&lsquo;./static_graph.png&rsquo;)
+        }, 0)
+        phantom.exit();
+    } else {
+      phantom.exit();
+    }
+  };</p>
+
+<p>  page.open(&lsquo;line_graph.html&rsquo;, function () {
+  });
+&#8220;`
+lets run above code using following command</p>
+
+<pre><code class="sh">$ phantomjs ./phantomjs_render.js
+</code></pre>
+
+<p>Lets assume that above html code is in <code>line_graph.html</code> file. We are using  <em>phantomJS</em> to open html file (or url) in headless browser
+and on loading finish it will create png and store it in <code>statis_graph.png</code>. We are using <a href="http://phantomjs.org/api/webpage/method/render.html">render</a> api which help
+us to create png.</p>
+
+<p>And remember to exit phantomjs browser using <code>phantom.exit()</code> otherwise your process wont exit.</p>
+
+<p>But remember we want to create dynamic graph images on server side &hellip; so we solve 50% of problem. let solve remaining 50%.</p>
+
+<p>3.Create dynamic graphs</p>
+
+<p>Lets continue with our current example. We are able to generate static graph image.
+To make graph true-ly  dynamic we have to some how send data dynamically to <code>line_graph.html</code>. We did modify our phantomjs_render.js file to accomplish this goal.
+code snippet is below.</p>
+
+<pre><code class="js">  //filename : phantomjs_render.js
+  var page = require('webpage').create();
+  var system = require('system');
+  var args = system.args;
+  var data = JSON.parse(system.args[1])
+
+
+  page.onLoadFinished   = function(status) {
+    if (status === 'success') {
+      page.evaluate(function(d) {
+        window.chart(d)
+      }, data);
+
+      setTimeout(function () {
+        page.render('./static_graph.png')
+      }, 0)
+      phantom.exit();
+    } else {
+      phantom.exit();
+    }
+  };  
+
+  page.open('line_graph.html', function () {});
+</code></pre>
+
+<p>We have to run following command to run above code in terminal</p>
+
+<pre><code class="sh">$ phantomjs ./phantomjs_render.js  stringified_data
+</code></pre>
+
+<p>Remember we can not have command arguemnt as json so we have to convert json data to string using <code>JSON.stringify</code>.</p>
+
+<p>We are using in build <code>system</code> from phantomjs to get argument list provided to <em>phantomjs</em> command.</p>
+
+<p>Here we are sending our data as second argument to <strong>phantomjs</strong> command which we can get in our javascript code from <code>line_graph.html</code> using <em><a href="http://phantomjs.org/api/system/property/args.html">system.args</a></em> api.</p>
+
+<p>Another interesting api we are using is <em><a href="http://phantomjs.org/api/webpage/method/evaluate.html">page.evaluate</a></em> which help us to run any javascript code in context of webpage in phatomjs
+browser. On <code>onLoadFinished</code> event on page we are calling <code>chart</code> method and pass our dynamic data to webpage which can be use to create line chart.</p>
+
+<p>4.No!! No command line stuff</p>
+
+<p>I exclaimed !! Sam replied calmly with &ldquo;Why not use <code>child_process</code> from node to run above code?&rdquo;, and with that we solve another problem. Here is code how to do it,</p>
+
+<pre><code class="js">//filename : phantomjs_test.js
+
+  var phantomjs = require('phantomjs')
+    , path = require('path')
+    , childProcess = require('child_process')
+
+  var binPath = phantomjs.path;
+
+
+  var createImage = function (data, url /*may be file path*/) {
+    var childArgs = [
+      path.join(__dirname, 'phantomjs_render.js'),
+      JSON.stringify(data),
+    ];
+
+
+    var spawn = childProcess.spawn
+    spawn(binPath, childArgs)
+  }
+</code></pre>
+
+<p>run above code using following command</p>
+
+<pre><code class="sh">node phantomjs_test.js
+</code></pre>
+
+<p>so here we are spawning new child process with  <code>phantomjs_render.js</code> and  stringify data as arguments. We can also pass other parameters
+dynamically. Thats it !! problem has been solved, Isn&rsquo;t it simple ? :)</p>
+
+<p>5.Advance Usage</p>
+
+<p>I asked this question to Sam because i want to send these dynamically generated graph image in email. Email or preciously email client
+has very poor support for SVG and embedded image. So you have to use <code>img</code> tag. Either you can put these dynamically generated
+image to <code>s3</code> or generate dynamically when request come for it. You can find advance code for it <a href="https://github.com/chetandhembre/blog/tree/master/dynamic_graph_image_phantomjs">here</a>.</p>
+]]></content>
+  </entry>
+  
+</feed>
